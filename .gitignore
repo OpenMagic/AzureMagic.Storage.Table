@@ -1,0 +1,14 @@
+.vs/
+artifacts/
+bin/
+node_modules/
+obj/
+packages/
+
+*.csproj.user
+*.DotSettings.user
+*.feature.cs
+*.tmp
+
+LibLog.cs
+npm-debug.log
