@@ -1,3 +1,3 @@
-# AzureMagic.Storage.Table
+# OpenMagic.Azure.Storage.Table
 
-AzureMagic.Storage.Table is a set of utilities to make working with Azure Storage Table easier.
+OpenMagic.Azure.Storage.Table is a set of utilities to make working with an Azure Storage Table easier.
