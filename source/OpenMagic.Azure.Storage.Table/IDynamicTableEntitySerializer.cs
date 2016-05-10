@@ -5,6 +5,6 @@ namespace OpenMagic.Azure.Storage.Table
     public interface IDynamicTableEntitySerializer<TEntity>
     {
         TEntity Deserialize(DynamicTableEntity row);
-        DynamicTableEntity Serialize(TEntity row);
+        DynamicTableEntity Serialize(TEntity entity);
     }
 }
