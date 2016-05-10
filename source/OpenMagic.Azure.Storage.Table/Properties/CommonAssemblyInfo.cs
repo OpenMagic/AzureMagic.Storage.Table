@@ -8,5 +8,6 @@ using Anotar.LibLog;
 [assembly: LogMinimalMessage]
 
 // Updated by build system
+
 [assembly: AssemblyVersion("0.0.0.0")]
 [assembly: AssemblyFileVersion("0.0.0.0")]

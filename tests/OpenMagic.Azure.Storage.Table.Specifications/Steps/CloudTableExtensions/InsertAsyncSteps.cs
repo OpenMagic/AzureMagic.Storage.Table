@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using OpenMagic.Azure.Storage.Table.Specifications.Helpers;
 using FluentAssertions;
 using FluentAssertions.Equivalency;
-using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
+using OpenMagic.Azure.Storage.Table.Specifications.Helpers;
 using TechTalk.SpecFlow;
 
 namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.CloudTableExtensions
@@ -13,17 +12,17 @@ namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.CloudTableExtension
     [Binding]
     public class InsertAsyncSteps
     {
-        private Given _given;
+        private readonly Given _given;
 
         public InsertAsyncSteps(Given given)
         {
             _given = given;
         }
 
-        [Given(@"a clould table")]
-        public void GivenAClouldTable()
+        [Given(@"a cloud table")]
+        public void GivenACloudTable()
         {
-            _given.CloudTable = AzureTableProvider.GetTable(create: true);
+            _given.CloudTable = AzureTableProvider.GetTable( /*create:*/ true);
         }
 
         [Given(@"an table entity")]
@@ -57,6 +56,7 @@ namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.CloudTableExtension
         public void ThenTheTableEntityIsAddedToTheCloudTable()
         {
             var expected = _given.TableEntity;
+            // ReSharper disable once ReplaceWithSingleCallToSingle because TableQuery<TableEntity> does not support single
             var actual = _given.CloudTable
                 .CreateQuery<TableEntity>()
                 .Where(t => t.PartitionKey == _given.TableEntity.PartitionKey)
@@ -71,10 +71,10 @@ namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.CloudTableExtension
             var expected = _given.TableEntities.OrderBy(e => e.PartitionKey).ToArray();
             var actual = ReadTableEntitiesFromCloudTable().OrderBy(e => e.PartitionKey).ToArray();
 
-            for (int i = 0; i < expected.Length; i++)
+            for (var i = 0; i < expected.Length; i++)
             {
                 actual[i].ShouldBeEquivalentTo(
-                    expected[i], 
+                    expected[i],
                     ConfigureEquivalencyAssertionOptions);
             }
         }
@@ -91,7 +91,7 @@ namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.CloudTableExtension
                 .ExecuteQuery(query);
         }
 
-        private EquivalencyAssertionOptions<TableEntity> ConfigureEquivalencyAssertionOptions<TableEntity>(EquivalencyAssertionOptions<TableEntity> options)
+        private EquivalencyAssertionOptions<TableEntity> ConfigureEquivalencyAssertionOptions(EquivalencyAssertionOptions<TableEntity> options)
         {
             return options
                 .Excluding(ctx => ctx.SelectedMemberPath.StartsWith("Compiled"));

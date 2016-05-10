@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using Anotar.LibLog;
 
@@ -8,6 +9,14 @@ namespace OpenMagic.Azure.Storage.Table.Specifications.Helpers
     {
         private const string ProcessName = "AzureStorageEmulator";
         private const string FileName = @"C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe";
+
+        static AzureStorageEmulator()
+        {
+            if (!File.Exists(FileName))
+            {
+                throw new FileNotFoundException($"Cannot find Azure Storage Emulator '{FileName}'.");
+            }
+        }
 
         internal static void StartIfNotRunning()
         {

@@ -1,4 +1,4 @@
-﻿using OpenMagic.Azure.Storage.Table.Specifications.Steps.Table;
+﻿using OpenMagic.Azure.Storage.Table.Specifications.Helpers.Dummies;
 
 namespace OpenMagic.Azure.Storage.Table.Specifications.Helpers
 {

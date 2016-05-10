@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Anotar.LibLog;
@@ -42,7 +41,6 @@ namespace OpenMagic.Azure.Storage.Table
                 rows.AddRange(result);
 
                 LogTo.Debug(() => $"{logPrefix}: Segment {++segment} completed, so far {rows.Count:N0} rows have been retrieved.");
-
             } while (result.ContinuationToken != null);
 
             LogTo.Debug(() => $"{logPrefix}: retrieved {rows.Count:N0} rows.");

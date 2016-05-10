@@ -16,7 +16,7 @@
 
         internal static string GetTableName<TEntity>()
         {
-            return GetTableName(typeof(TEntity).Name+"s");
+            return GetTableName(typeof(TEntity).Name + "s");
         }
     }
 }

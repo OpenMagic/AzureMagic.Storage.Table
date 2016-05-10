@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.WindowsAzure.Storage;
+﻿using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
 namespace OpenMagic.Azure.Storage.Table.Specifications.Helpers

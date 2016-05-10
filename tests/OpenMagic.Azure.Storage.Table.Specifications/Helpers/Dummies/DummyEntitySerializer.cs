@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.Table
+namespace OpenMagic.Azure.Storage.Table.Specifications.Helpers.Dummies
 {
     internal class DummyEntitySerializer : IDynamicTableEntitySerializer<DummyEntity>
     {

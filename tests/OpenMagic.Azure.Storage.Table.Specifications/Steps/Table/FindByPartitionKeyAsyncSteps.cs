@@ -4,6 +4,7 @@ using Anotar.LibLog;
 using FluentAssertions;
 using Microsoft.WindowsAzure.Storage.Table;
 using OpenMagic.Azure.Storage.Table.Specifications.Helpers;
+using OpenMagic.Azure.Storage.Table.Specifications.Helpers.Dummies;
 using TechTalk.SpecFlow;
 
 namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.Table
@@ -11,8 +12,8 @@ namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.Table
     [Binding]
     public class FindByPartitionKeyAsyncSteps
     {
-        private Given _given;
-        private Actual _actual;
+        private readonly Actual _actual;
+        private readonly Given _given;
 
         public FindByPartitionKeyAsyncSteps(Given given, Actual actual)
         {
@@ -25,7 +26,7 @@ namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.Table
         {
             LogTo.Info($"Given clean table '{tableName}'");
 
-            _given.CloudTable = AzureTableProvider.GetTable(AzureTableNamer.GetTableName(tableName), clean: true);
+            _given.CloudTable = AzureTableProvider.GetTable(AzureTableNamer.GetTableName(tableName), true);
         }
 
         [Given(@"(.*) table entities with partition key '(.*)'")]
@@ -36,13 +37,13 @@ namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.Table
             _given.TableEntities = Enumerable.Range(1, entityCount).Select(n => new TableEntity(partitionKey, n.ToString("N5"))).ToArray();
             _given.CloudTable.InsertAsync(_given.TableEntities).Wait();
         }
-        
+
         [Given(@"todo")]
         public void GivenTodo()
         {
             throw new NotImplementedException("todo: implement step");
         }
-        
+
         [When(@"Table\.FindByPartitionKeyAsync\((.*)\) is called")]
         public void WhenTable_FindByPartitionKeyAsyncIsCalled(string partitionKey)
         {
@@ -55,7 +56,7 @@ namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.Table
 
             _actual.DummyEntities = table.FindByPartitionKeyAsync(partitionKey).Result.ToArray();
         }
-        
+
         [Then(@"(.*) entities should be returned")]
         public void ThenEntitiesShouldBeReturned(int expectedCount)
         {
@@ -63,7 +64,7 @@ namespace OpenMagic.Azure.Storage.Table.Specifications.Steps.Table
 
             _actual.DummyEntities.Length.Should().Be(expectedCount);
         }
-        
+
         [Then(@"they should have partition key (.*)")]
         public void ThenTheyShouldHavePartitionKey(string expectedPartitionKey)
         {

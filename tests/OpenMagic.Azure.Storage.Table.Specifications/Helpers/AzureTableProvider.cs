@@ -6,12 +6,12 @@ namespace OpenMagic.Azure.Storage.Table.Specifications.Helpers
 {
     internal static class AzureTableProvider
     {
+        internal const string ConnectionString = "UseDevelopmentStorage=true;";
+
         static AzureTableProvider()
         {
             AzureStorageEmulator.StartIfNotRunning();
         }
-
-        internal const string ConnectionString = "UseDevelopmentStorage=true;";
 
         internal static CloudTable GetTable<TEntity>(bool clean = false, bool create = true)
         {
