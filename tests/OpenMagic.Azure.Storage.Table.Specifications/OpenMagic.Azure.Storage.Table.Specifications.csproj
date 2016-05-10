@@ -120,6 +120,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FindByPartitionKeyAsync.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Table\GetAllAsync.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetAllAsync.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\Table\CommonTableSteps.cs" />
+    <Compile Include="Steps\Table\GetAllAsyncSteps.cs" />
     <Compile Include="Helpers\Dummies\DummyEntity.cs" />
     <Compile Include="Helpers\Dummies\DummyEntitySerializer.cs" />
     <Compile Include="Steps\Table\FindByPartitionKeyAsyncSteps.cs" />
@@ -142,6 +149,10 @@
     <None Include="Features\CloudTableExtensions\InsertAsync.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>InsertAsync.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Table\GetAllAsync.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAllAsync.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Table\FindByPartitionKeyAsync.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

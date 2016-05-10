@@ -6,5 +6,6 @@ namespace OpenMagic.Azure.Storage.Table
     public interface ITable<TEntity>
     {
         Task<IEnumerable<TEntity>> FindByPartitionKeyAsync(string partitionKey);
+        Task<IEnumerable<TEntity>> GetAllAsync();
     }
 }

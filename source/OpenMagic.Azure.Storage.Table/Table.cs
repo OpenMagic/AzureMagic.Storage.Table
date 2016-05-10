@@ -20,20 +20,35 @@ namespace OpenMagic.Azure.Storage.Table
             _serializer = serializer;
         }
 
-        public async Task<IEnumerable<TEntity>> FindByPartitionKeyAsync(string partitionKey)
+        public Task<IEnumerable<TEntity>> FindByPartitionKeyAsync(string partitionKey)
         {
             // partitionKey is not logged as it could contain sensitive information
-            var logPrefix = $"{nameof(FindByPartitionKeyAsync)}.(partitionKey: XXXXX)";
-            LogTo.Trace(logPrefix);
+            LogTo.Trace($"{nameof(FindByPartitionKeyAsync)}.(partitionKey: XXXXX)");
+
+            var query = CreateQuery().Where(row => row.PartitionKey == partitionKey);
+
+            return ExecuteQueryAsync((TableQuery<DynamicTableEntity>)query);
+        }
+
+        public Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            LogTo.Trace($"{nameof(GetAllAsync)}.()");
+            return ExecuteQueryAsync(CreateQuery());
+        }
+
+        private TableQuery<DynamicTableEntity> CreateQuery()
+        {
+            return GetTable().CreateQuery<DynamicTableEntity>();
+        }
+
+        private async Task<IEnumerable<TEntity>> ExecuteQueryAsync(TableQuery<DynamicTableEntity> query)
+        {
+            const string logPrefix = nameof(ExecuteQueryAsync);
 
             TableQuerySegment<DynamicTableEntity> result = null;
 
             var segment = 0;
             var rows = new List<DynamicTableEntity>();
-            var table = GetTable();
-            var query = (TableQuery<DynamicTableEntity>)table
-                .CreateQuery<DynamicTableEntity>()
-                .Where(row => row.PartitionKey == partitionKey);
 
             do
             {
