@@ -5,7 +5,7 @@
     // properties are used in this class is for code readability.
     internal class DummyEntity
     {
-        public string PartitionKey { get; internal set; }
-        public string RowKey { get; internal set; }
+        public string PartitionKey { get; set; }
+        public string RowKey { get; set; }
     }
 }

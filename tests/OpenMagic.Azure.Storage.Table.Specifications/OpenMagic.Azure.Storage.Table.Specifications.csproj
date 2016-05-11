@@ -76,6 +76,10 @@
       <HintPath>..\..\packages\NLog.4.3.3\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="OpenMagic, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OpenMagic.2.0.0\lib\net45\OpenMagic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -115,6 +119,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InsertAsync.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\DynamicTableEntitySerializer\Deserialize.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Deserialize.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\DynamicTableEntitySerializer\Serialize.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Serialize.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Table\FindByPartitionKeyAsync.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -125,6 +139,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetAllAsync.feature</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Dummies\DummyEntityWithTypes.cs" />
+    <Compile Include="Helpers\DummyFactory.cs" />
+    <Compile Include="Steps\DynamicTableEntitySerializer\DeserializeSteps.cs" />
+    <Compile Include="Steps\DynamicTableEntitySerializer\SerializeSteps.cs" />
     <Compile Include="Steps\Table\CommonTableSteps.cs" />
     <Compile Include="Steps\Table\GetAllAsyncSteps.cs" />
     <Compile Include="Helpers\Dummies\DummyEntity.cs" />
@@ -149,6 +167,14 @@
     <None Include="Features\CloudTableExtensions\InsertAsync.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>InsertAsync.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\DynamicTableEntitySerializer\Deserialize.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Deserialize.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\DynamicTableEntitySerializer\Serialize.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Serialize.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Table\GetAllAsync.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

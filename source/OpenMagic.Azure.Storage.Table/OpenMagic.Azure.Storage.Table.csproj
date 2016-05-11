@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Packages\LibLog.4.2\LibLog.cs" />
+    <Compile Include="DynamicTableEntitySerializer.cs" />
     <Compile Include="Properties\CommonAssemblyInfo.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="CloudTableExtensions.cs" />
